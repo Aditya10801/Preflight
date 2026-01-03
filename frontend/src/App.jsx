@@ -3,6 +3,10 @@ import Header from "./components/header";
 import Runway from "./components/Runway";
 import Search from "./components/Search";
 import Chip2 from "./components/Chip";
+const API = import.meta.env.VITE_API_URL;
+
+
+
 import { useState, useEffect } from "react";
 
 function App() {
@@ -21,7 +25,7 @@ function App() {
 
   async function fetchData() {
     try {
-      const response = await fetch(`http://localhost:3000/data?icao=${ICAO}`);
+      const response = await fetch(`${API}/data?icao=${icao}`);
       const data = await response.json(); 
       
       setWeatherData({
