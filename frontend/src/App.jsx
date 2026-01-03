@@ -25,7 +25,7 @@ function App() {
 
   async function fetchData() {
     try {
-      const response = await fetch(`${API}/data?icao=${icao}`);
+      const response = await fetch(`${API}/data?icao=${ICAO}`);
       const data = await response.json(); 
       
       setWeatherData({
