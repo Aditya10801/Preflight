@@ -1,5 +1,5 @@
 import Current from "./components/Current";
-import Header from "./components/header";
+import Header from "./components/Header";
 import Runway from "./components/Runway";
 import Search from "./components/Search";
 import Chip2 from "./components/Chip";
