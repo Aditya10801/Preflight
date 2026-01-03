@@ -13,7 +13,7 @@ const icaoSchema = zod.object({
 app.get("/data", async (req, res) => {
   let payload = req.body;
   if (!payload || Object.keys(payload).length === 0) {
-    payload = { icao: req.query.icao }; // Extract from ?icao=VIDP
+    payload = { icao: req.query.icao }; 
   }
   const validatedPayload = icaoSchema.safeParse(payload);
 
@@ -38,9 +38,10 @@ app.get("/data", async (req, res) => {
   const rawMetar = metar.rawOb;
   const temp = metar.temp;
   const vis = metar.visib;
-  const cloudsFew = metar.clouds[0].base;
-  const cloudsSct = metar.clouds[1].base;
+  const alt = metar.altim;
+  const clouds = metar.clouds
   const wind = `${metar.wdir}@${metar.wspd}`;
+  const fltCat = metar.fltCat;
 
   const runwayResponse = await fetch(
     `https://aviationweather.gov/api/data/airport?ids=${icao}&format=json`
@@ -62,12 +63,13 @@ app.get("/data", async (req, res) => {
     rawMetar,
     temp,
     vis,
-    cloudsFew,
-    cloudsSct,
+    alt,
+    clouds,
     wind,
     lat,
     long,
     runways,
+    fltCat
   });
 
 });
