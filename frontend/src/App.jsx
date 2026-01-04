@@ -12,8 +12,8 @@ import { useState, useEffect } from "react";
 function App() {
   const [ICAO, setICAO] = useState();
   const [weatherData, setWeatherData] = useState({
-    stationName: "Fetching...",
-    rawMetar: "Fetching...",
+    stationName: "Waiting for input",
+    rawMetar: "",
     temp: "--",
     vis: "--",
     alt: "--",
@@ -45,7 +45,12 @@ function App() {
   }
 
  useEffect(() => {
-  if (ICAO){ fetchData();}
+  if (ICAO){ 
+    setWeatherData({
+      stationName: "Fetching Data....",
+      
+    })
+    fetchData();}
 }, [ICAO]);
 
   return (
