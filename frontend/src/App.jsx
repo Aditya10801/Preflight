@@ -55,7 +55,7 @@ function App() {
 
   return (
     <div className="x-overflow-hidden w-screen h-screen bg-[#F5F8FA] font-[outfit] overflow-y-auto">
-      <Header />
+     <div className="flex flex-cols justify-center items-center"> <Header /></div>
       <Search setICAO={setICAO} />
       
       <Current 
