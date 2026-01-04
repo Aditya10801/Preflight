@@ -17,7 +17,7 @@ export default function Runway({ runways }) {
             />
           ))
         ) : (
-          <p className="text-sm text-gray-400">No runway data available</p>
+          <p className="text-sm text-gray-400"><Chip value="Awaiting Airport Selection"/></p>
         )}
       </div>
     </div>

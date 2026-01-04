@@ -28,9 +28,10 @@ function App() {
 
       const response = await fetch(`${API}/data?icao=${ICAO}`);
       const data = await response.json();
-      
+      let name=data.stationName;
+     
       setWeatherData({
-        stationName: data.stationName,
+        stationName: name,
         rawMetar: data.rawMetar,
         temp: `${data.temp}°C`, // Corrected syntax error from previous turn
         vis: data.vis,
@@ -42,7 +43,7 @@ function App() {
       });
     } catch (error) {
       console.error("Error fetching data:", error);
-      setWeatherData((prev) => ({ ...prev, stationName: "Error loading station" }));
+      setWeatherData((prev) => ({ ...prev, stationName: "Error, please verify inputs" }));
     }
   }
 
