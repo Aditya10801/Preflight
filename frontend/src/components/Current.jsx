@@ -15,7 +15,7 @@ export default function Current(props) {
           {props.rawMetar}
         </p>
         <div className="grid grid-cols-2 gap-3">
-          <Chip icon="thermostat" value={`${props.temp}°C`} type="Temp"/>
+          <Chip icon="thermostat" value={`${props.temp}`} type="Temp"/>
           <Chip icon="visibility" value={props.vis} type="Visibility"/>
           <Chip icon="altitude" value={props.alt} type="Altimeter"/>
            <Chip icon="air" value={props.wind} type="Wind"/>

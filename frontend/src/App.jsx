@@ -14,12 +14,12 @@ function App() {
   const [weatherData, setWeatherData] = useState({
     stationName: "Waiting for input",
     rawMetar: "",
-    temp: "--",
-    vis: "--",
-    alt: "--",
-    wind: "--",
+    temp: "",
+    vis: "",
+    alt: "",
+    wind: "",
     runways: [],
-    fltCat: "--"
+    fltCat: ""
      // Add this to hold the array
   });
 
@@ -31,7 +31,7 @@ function App() {
       setWeatherData({
         stationName: data.stationName,
         rawMetar: data.rawMetar,
-        temp: data.temp,
+        temp: `${data.temp}°C`,
         vis: data.vis,
         alt: data.alt,
         wind: data.wind,
@@ -61,7 +61,7 @@ function App() {
       <Current 
         stationName={weatherData.stationName} 
         rawMetar={weatherData.rawMetar} 
-        temp={weatherData.temp} 
+        temp={`${weatherData.temp}`}
         vis={weatherData.vis} 
         alt={weatherData.alt} 
         wind={weatherData.wind}
