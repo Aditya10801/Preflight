@@ -2,7 +2,7 @@ import Current from "./components/Current";
 import Header from "./components/Header";
 import Runway from "./components/Runway";
 import Search from "./components/Search";
-import Chip2 from "./components/Chip";
+import Chip2 from "./components/Chip2";
 const API = import.meta.env.VITE_API_URL;
 
 
@@ -69,7 +69,7 @@ function App() {
 
      
       <Runway runways={weatherData.runways} />
-     <div className="m-5"> <Chip2 icon="flight_land" type="Flight Type" value={weatherData.fltCat}/> </div>
+     <div className="m-5"> <Chip2 icon="flight" type="Approach Type" value={weatherData.fltCat}/> </div>
     </div>
   );
 }
