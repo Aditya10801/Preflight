@@ -1,46 +1,17 @@
-export default function Chip2(props) {
-  let landingType = "";
-  
-  // Define colors for each aviation category
-  const colorMap = {
-    VFR:  { bg: "bg-green-100",  text: "text-green-700",  icon: "text-green-600" },
-    MVFR: { bg: "bg-blue-100",   text: "text-blue-700",   icon: "text-blue-600" },
-    IFR:  { bg: "bg-red-100",    text: "text-red-700",    icon: "text-red-600" },
-    LIFR: { bg: "bg-purple-100", text: "text-purple-700", icon: "text-purple-600" },
-    Default: { bg: "bg-gray-100", text: "text-gray-700",  icon: "text-gray-600" }
+export default function Chip2({ value, type }) {
+  const styles = {
+    VFR: "border-green-500 text-green-500 bg-green-500/5",
+    MVFR: "border-blue-500 text-blue-500 bg-blue-500/5",
+    IFR: "border-red-500 text-red-500 bg-red-500/5",
+    LIFR: "border-purple-500 text-purple-500 bg-purple-500/5",
   };
 
-  // Get current styles based on props.value
-  const style = colorMap[props.value] || colorMap.Default;
-
-  // Mapping abbreviations to full names
-  if (props.value === "VFR") {
-    landingType = "Visual Flight Rules";
-  } else if (props.value === "IFR") {
-    landingType = "Instrument Flight Rules";
-  } else if (props.value === "MVFR") {
-    landingType = "Marginal Visual Flight Rules";
-  } else if (props.value === "LIFR") {
-    landingType = "Low Instrument Flight Rules";
-  } else {
-    landingType = "Unknown Category";
-  }
+  const currentStyle = styles[value] || "border-[#404040] text-[#404040]";
 
   return (
-    <div className={`flex items-center gap-3 ${style.bg} rounded-lg p-3 w-full shadow-sm transition-colors duration-300`}>
-      <span className={`material-symbols-outlined text-2xl ${style.icon}`}>
-        {props.icon}
-      </span>
-      
-      <div>
-        <p className={`text-sm font-bold ${style.text} leading-tight`}>
-          {landingType}
-        </p>
-        
-        <p className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">
-          {props.value} — {props.type}
-        </p>
-      </div>
+    <div className={`border-2 p-5 transition-all duration-500 ${currentStyle}`}>
+      <p className="text-[10px] font-bold opacity-60 tracking-[0.2em] mb-1">{type}</p>
+      <p className="text-3xl font-black italic tracking-tighter leading-none">{value || "STDBY"}</p>
     </div>
   );
 }

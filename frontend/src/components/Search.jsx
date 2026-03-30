@@ -1,33 +1,33 @@
 import { useState } from "react";
 
-export default function Search({ setICAO }) {
-  // 1. Local state to track the text as the user types
-  const [localValue, setLocalValue] = useState("");
+export default function Search({ onSearch, loading }) {
+  const [val, setVal] = useState("");
+
+  const handleAction = (e) => {
+    e.preventDefault();
+    onSearch(val.toUpperCase().trim());
+  };
 
   return (
-    <div className="relative mb-6 mx-5">
-      <input
-        className="w-full rounded-xl border-none bg-white shadow-sm py-3 pl-5 pr-24 text-[#2C3E50] placeholder-gray-400 focus:ring-2 focus:ring-[#3282B8]"
-        placeholder="ICAO"
-        type="text"
-        // 2. Controlled input: updates local state only
-        value={localValue}
-        onChange={(e) => setLocalValue(e.target.value)}
-      />
-
-      <div className="absolute inset-y-0 right-0 flex items-center pr-2">
-        <button
-          className="bg-[#E9F5F8] text-[#3282B8] px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-[#d4ebf2] transition-colors"
-          onClick={() => {
-            // 3. Update the App's ICAO state only on click
-            const formattedValue = localValue.trim().toUpperCase();
-            setICAO(formattedValue);
-            console.log("Searching for:", formattedValue);
-          }}
+    <form onSubmit={handleAction} className="relative group">
+      <div className="flex border-2 border-white bg-black">
+        <input
+          className="flex-1 bg-transparent p-4 text-white outline-none font-bold uppercase tracking-widest placeholder:text-[#404040]"
+          placeholder="SEARCH_ICAO..."
+          value={val}
+          onChange={(e) => setVal(e.target.value)}
+        />
+        <button 
+          type="submit"
+          disabled={loading}
+          className="bg-white text-black px-6 md:px-10 font-black hover:bg-[#FACC15] transition-colors uppercase text-xs tracking-tighter"
         >
-          Search
+          {loading ? "SEARCHING..." : "EXECUTE"}
         </button>
       </div>
-    </div>
+      <div className="mt-2 h-1 w-full bg-[#171717] overflow-hidden">
+        {loading && <div className="h-full bg-blue-500 animate-pulse w-full"></div>}
+      </div>
+    </form>
   );
 }

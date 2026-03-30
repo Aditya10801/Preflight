@@ -1,26 +1,32 @@
-import Chip from "./Chip";
-
-export default function Current(props) {
-    
+export default function Current({ data }) {
   return (
-    <>
-      <div className="rounded-xl bg-white m-4 p-4 shadow-custom">
-        <h3 className="mb-3 text-sm font-semibold text-[#3282B8] uppercase tracking-wide">
-          Current Conditions
-        </h3>
-        <div className="mt-5 mb-5">
-        <Chip icon="cell_tower" value={props.stationName}/>
-        </div>
-        <p className="font-mono text-sm text-text-dark mb-4 break-words">
-          {props.rawMetar}
-        </p>
-        <div className="grid grid-cols-2 gap-3">
-          <Chip icon="thermostat" value={`${props.temp}`} type="Temp"/>
-          <Chip icon="visibility" value={props.vis} type="Visibility"/>
-          <Chip icon="altitude" value={props.alt} type="Altimeter"/>
-           <Chip icon="air" value={props.wind} type="Wind"/>
-        </div>
+    <div className="border border-[#262626] bg-[#0F0F0F]">
+      <div className="bg-[#262626] text-[#A3A3A3] px-4 py-1 text-[9px] font-bold tracking-widest uppercase flex justify-between">
+        <span>SENSOR_ARRAY_V2.1</span>
+        <span>STABLE_CONNECTION</span>
       </div>
-    </>
+      
+      <div className="p-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <Unit label="TEMP" val={data.temp} sub="CELSIUS" />
+        <Unit label="VIS" val={data.vis} sub="STATUTE_MILES" />
+        <Unit label="ALTIMETER" val={data.alt} sub="HG_UNITS" />
+        <Unit label="WIND" val={data.wind} sub="KNOTS" color="text-[#FACC15]" />
+      </div>
+
+      <div className="border-t border-[#262626] p-6 bg-black">
+        <p className="text-[10px] text-[#525252] font-bold mb-2 tracking-widest">RAW_METAR_STRING</p>
+        <p className="text-xs text-[#A3A3A3] font-mono leading-relaxed break-all">
+          {data.rawMetar}
+        </p>
+      </div>
+    </div>
   );
 }
+
+const Unit = ({ label, val, sub, color = "text-white" }) => (
+  <div>
+    <p className="text-[10px] text-[#737373] font-bold tracking-widest mb-1">{label}</p>
+    <p className={`text-xl font-black leading-none ${color}`}>{val || "--"}</p>
+    <p className="text-[8px] text-[#404040] mt-1 font-bold">{sub}</p>
+  </div>
+);
